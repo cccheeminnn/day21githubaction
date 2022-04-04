@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Here is the details of: <span data-th-text="${game.name}"></span></h1>
+    <table border="1">
+        <tbody>
+            <tr>
+                <td rowspan="6">
+                    <img th:src="${game.image}">
+                </td>
+                <td>
+                    Name: <span th:text="${game.name}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gid: <span th:text="${game.gid}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Year: <span th:text="${game.year}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ranking: <span th:text="${game.ranking}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Users Rated: <span th:text="${game.users_rated}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    URL: <a th:href="${game.url}"> <span th:text="${game.url}"></span> </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Comments:</h2>
+    <form method="GET" action="">
+        <table border="1">
+            <tbody>
+                <span th:if="${comments.empty}">No Comments Found</span>
+                <tr th:each="c: ${comments}">
+                    <td th:text="${c.c_text}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <tr>
+            <button type="submit" name="offset" th:value="${offset} - 5"> PREV</button>
+            <button type="submit" name="offset" th:value="${offset} + 5"> NEXT</button>
+        </tr>
+    </form>
+</body>
+</html>
